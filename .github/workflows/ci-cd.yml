@@ -36,8 +36,8 @@ jobs:
       - name: Test ${{ matrix.service }}
         run: |
           cd ${{ matrix.service }}
-          chmod +x ../mvnw
-          ../mvnw test
+          chmod +x ./mvnw
+          ./mvnw test
         env:
           SPRING_CLOUD_CONFIG_ENABLED: false
 
