@@ -27,12 +27,16 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
 
+      - name: Grant execute permission to mvnw
+        run: chmod +x mvnw
+
       - name: Build all modules
         run: mvn clean install -DskipTests
 
       - name: Test ${{ matrix.service }}
         run: |
           cd ${{ matrix.service }}
+          chmod +x ../mvnw
           ../mvnw test
         env:
           SPRING_CLOUD_CONFIG_ENABLED: false
